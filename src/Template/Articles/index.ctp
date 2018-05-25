@@ -8,6 +8,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Article'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Reporte PDF'), ['action' => 'ACCION']) ?></li>
     </ul>
 </nav>
 <div class="articles index large-9 medium-8 columns content">
@@ -33,6 +34,7 @@
                     <?= $this->Html->link(__('View'), ['action' => 'view', $article->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id)]) ?>
+                    <?= $this->Html->link(__('PDF'), ['action' => 'viewPdf', $article->id]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

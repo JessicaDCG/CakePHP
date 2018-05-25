@@ -38,7 +38,6 @@ $cakeDescription = 'CakePHP';
     <title>
         <?= $cakeDescription ?>
     </title>
-
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
@@ -53,7 +52,6 @@ $cakeDescription = 'CakePHP';
         <h4 style="color: white">Jessica Cruz</h4>
     </div>
 </header>
-
 
 <div class="row">
     <div class="columns large-12 text-center">

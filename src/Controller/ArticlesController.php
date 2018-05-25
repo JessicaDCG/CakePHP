@@ -42,17 +42,41 @@ class ArticlesController extends AppController
         $this->set('article', $article);
     }
 
-  
+  /**
+    ReportePDF metodo
+    Genera reporte de acuerdo al ID del objet
+  */
+    public   function viewPdf($id = null){
+         if (!$id){
+             $this->Session->setFlash('Id inválido para obtener pdf');
+             $this->redirect(array('action'=>'index'), null, true);
+         }
+
+         //Configure::write('debug',2);
+
+         $id = intval($id);
+
+         $property = $this->Articles->get($id, [
+            'contain' => []
+        ]);
+
+           $this->set('property',$property);
+         if (empty($property))
+         {
+             $this->Session->setFlash('Sorry, there is no property with the
+submitted ID.');
+             $this->redirect(array('action'=>'index'), null, true);
+         }
+         $this->layout = 'pdf';
+         $this->render();
+    }
+
 
     /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function mail2(){
-        $this->requestAction('/EmailController/correo'); 
-    }
-
     public function add()
     {
         try {
@@ -60,11 +84,7 @@ class ArticlesController extends AppController
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
             if ($this->Articles->save($article)) {
-                $this->Flash->success(__('The article has been saved.'));
-
-                
-                
-              
+                $this->Flash->success(__('The article has been saved.'));              
 
                 return $this->redirect(['action' => 'index']);
             }
