@@ -23,14 +23,18 @@
         <?php
             echo $this->Form->control('Nombre');
             echo $this->Form->control('Apellido_Paterno');
-            echo $this->Form->control('Apellido_Materno');
-            echo $this->Form->control('FechaNacimiento', ['empty' => true]);
-            //echo $this->Form->control('sexo');
+            echo $this->Form->control('Apellido_Materno');            
+            echo $this->Form->input('FechaNacimiento', array(
+                'label' => 'Fecha Nacimiento', 
+                'dateFormat' => 'DMY',
+                'minYear' => date('Y') - 80,
+                'maxYear' => date('Y') - 0 ));
+            
 
             $options = [1 => 'Femenino', 2 => 'Masculino'];
 
             echo $this->Form->input('sexo', array(
-                'options' =>$options,
+                'options' =>$ArraySexos,
                 'type' => 'select',
                 'empty' => 'Selecciona sexo',
                 'label' => 'Sexo'

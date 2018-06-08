@@ -7,10 +7,12 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Persona'), ['action' => 'edit', $persona->idPersona]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Persona'), ['action' => 'delete', $persona->idPersona], ['confirm' => __('Are you sure you want to delete # {0}?', $persona->Nombre)]) ?> </li>
-        <li><?= $this->Html->link(__('List Persona'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Persona'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Editar Persona'), ['action' => 'edit', $persona->idPersona]) ?> </li>
+        <li><?= $this->Form->postLink(__('Eliminar Persona'), ['action' => 'delete', $persona->idPersona], ['confirm' => __('Estas seguro que quieres eliminar # {0}?', $persona->Nombre)]) ?> </li>
+        <li><?= $this->Html->link(__('Lista de Personas'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('Crear Persona'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Generar PDF'), ['action' => 'pdf', $persona->idPersona, '_ext' => 'pdf']); ?> </li>
+        
     </ul>
 </nav>
 <div class="persona view large-9 medium-8 columns content">

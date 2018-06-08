@@ -11,7 +11,7 @@ class EmailController extends AppController
         
     }
 
-  	public function correo($err =null){
+  	public function correo($asunto=null,$err =null){
 	    /*Para este ejemplo no necesito de renderizar
 	      una vista por lo que autorender lo pongo a false
 	     */
@@ -52,7 +52,7 @@ class EmailController extends AppController
 	      ->emailFormat('html') //formato de correo
 	      ->to('jessicadaniela824@gmail.com') //correo para
 	      ->from('jessicadaniela824@gmail.com') //correo de
-	      ->subject('Error_CAKEPHP') //asunto
+	      ->subject($asunto) //asunto
 	      ->viewVars([ //enviar variables a la plantilla
 	        'var1' => '-----------------------',
 	        'var2' => $err,

@@ -46,6 +46,18 @@ use Cake\Routing\Route\DashedRoute;
  */
 Router::defaultRouteClass(DashedRoute::class);
 
+/*
+    Configurcion PDF's
+*/
+
+Router::scope('/users', function ($routes) {
+    $routes->extensions('pdf');
+    $routes->connect('/view/*', ['controller' => 'Persona', 'action' => 'pdf']);
+    $routes->fallbacks('InflectedRoute');
+});
+
+
+//////////
 Router::scope('/', function (RouteBuilder $routes) {
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',

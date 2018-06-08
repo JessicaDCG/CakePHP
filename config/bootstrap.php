@@ -44,6 +44,7 @@ use Cake\Mailer\Email;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
 
+
 /**
  * Uncomment block of code below if you want to use `.env` file during development.
  * You should copy `config/.env.default to `config/.env` and set/modify the
@@ -68,6 +69,25 @@ use Cake\Utility\Security;
 try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
+
+    Plugin::load('CakePdf', ['bootstrap' => true]);
+
+    // REPORTES PDF
+    Configure::write('CakePdf', [
+        'engine' => [
+            'className' => 'CakePdf.WkHtmlToPdf',
+            // 'binary' => '/usr/local/bin/wkhtmltopdf', // Si estas en Mac OS X / Linux
+            'binary' => 'C:\\Progra~1\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
+            'options' => [
+                'print-media-type' => false,
+                'outline' => true,
+                'dpi' => 96
+            ],
+        ],
+        'download' => true
+    ]);
+
+
 } catch (\Exception $e) {
     exit($e->getMessage() . "\n");
 }

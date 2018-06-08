@@ -46,26 +46,26 @@ class PersonaTable extends Table
     {
         $validator
             ->integer('idPersona')
-            ->allowEmpty('idPersona', 'create');
+            ->notEmpty('idPersona', 'create');
 
         $validator
             ->scalar('Nombre')
-            ->maxLength('Nombre', 50)
-            ->allowEmpty('Nombre');
+            ->maxLength('Nombre', 50)                                   
+            ->notEmpty('Nombre');
 
         $validator
             ->scalar('Apellido_Paterno')
             ->maxLength('Apellido_Paterno', 50)
-            ->allowEmpty('Apellido_Paterno');
+            ->notEmpty('Apellido_Paterno');
 
         $validator
             ->scalar('Apellido_Materno')
             ->maxLength('Apellido_Materno', 50)
-            ->allowEmpty('Apellido_Materno');
+            ->notEmpty('Apellido_Materno');
 
         $validator
             ->date('FechaNacimiento')
-            ->allowEmpty('FechaNacimiento');
+            ->notEmpty('FechaNacimiento');            
 
         $validator
             ->integer('sexo')
@@ -74,8 +74,8 @@ class PersonaTable extends Table
 
         $validator
             ->scalar('Correo')
-            ->maxLength('Correo', 50)
-            ->allowEmpty('Correo');
+            ->maxLength('Correo', 50)            
+            ->notEmpty('Correo');
 
         return $validator;
     }

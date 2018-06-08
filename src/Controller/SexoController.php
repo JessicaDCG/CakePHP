@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Sexo Controller
@@ -12,6 +13,15 @@ use App\Controller\AppController;
  */
 class SexoController extends AppController
 {
+    public function buscarSexo($idSexo){
+        
+        $sexos = TableRegistry::get('Sexo');
+        $obj = $sexos->find()
+                ->where(['idSexo' => $idSexo])
+                ->first();                   
+        return $obj['sexo'];          
+    }
+
 
     /**
      * Index method
