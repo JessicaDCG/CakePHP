@@ -65,4 +65,10 @@ class ErrorController extends AppController
     public function afterFilter(Event $event)
     {
     }
+
+    public function readerrorlog(){
+      // $file = new File('/HolaMundo/tmp/logs/error.log', false);
+      // $errorfile = $file->read();
+      return $errorfile;
+    }
 }

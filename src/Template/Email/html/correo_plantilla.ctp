@@ -2,6 +2,8 @@
 
 <!-- <p>Imprimimos las variables enviadas desde el controlador:</p> -->
 <br>
-<p><?= $var1; ?></p>
+<h4><?= $var1; ?></h4>
+<hr>
 <p><?= $var2; ?></p>
+<hr>
 <p><?= $var3; ?></p>

@@ -15,6 +15,7 @@ use Cake\ORM\TableRegistry;
  */
 class PersonaController extends AppController
 {
+  
     public function initialize()
     {
         parent::initialize();
@@ -42,18 +43,28 @@ class PersonaController extends AppController
      */
     public function view($id = null)
     {
+        try {
+
         $persona = $this->Persona->get($id, [
             'contain' => []
         ]);                  
 
         $objSexoCtrl = new SexoController();             
                 
-        $sexo = $objSexoCtrl->buscarSexo($persona['sexo']);
-        
+        $sexo = $objSexoCtrl->buscarSexo($persona['sexo']);          
       
         $this->set('sexo', $sexo);   
         $this->set('persona', $persona);
+
+        } catch (\Exception $e) {
+            $mail= new EmailController();
+            $err= new ErrorController();
+
+            $mail->correo('Error CAKAPHP',$e->getMessage());
+            return $this->redirect(['action' => 'index']);
+        }
     }
+
 
     /**
      * Add method

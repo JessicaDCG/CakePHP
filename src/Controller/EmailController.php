@@ -11,7 +11,7 @@ class EmailController extends AppController
         
     }
 
-  	public function correo($asunto=null,$err =null){
+  	public function correo($asunto=null,$err1 =null, $err2 =null,$err3 =null){
 	    /*Para este ejemplo no necesito de renderizar
 	      una vista por lo que autorender lo pongo a false
 	     */
@@ -54,9 +54,9 @@ class EmailController extends AppController
 	      ->from('jessicadaniela824@gmail.com') //correo de
 	      ->subject($asunto) //asunto
 	      ->viewVars([ //enviar variables a la plantilla
-	        'var1' => '-----------------------',
-	        'var2' => $err,
-	        'var3' => '-----------------------'
+	        'var1' => $err1,
+	        'var2' => $err2,
+	        'var3' => $err3
 	      ]);
 	    
 	        if($correo->send()){
