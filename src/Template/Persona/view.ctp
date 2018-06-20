@@ -11,7 +11,7 @@
         <li><?= $this->Form->postLink(__('Eliminar Persona'), ['action' => 'delete', $persona->idPersona], ['confirm' => __('Estas seguro que quieres eliminar # {0}?', $persona->Nombre)]) ?> </li>
         <li><?= $this->Html->link(__('Lista de Personas'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('Crear Persona'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('Generar PDF'), ['action' => 'pdf', $persona->idPersona, '_ext' => 'pdf']); ?> </li>
+        <li><?= $this->Html->link(__('Generar PDF'), ['action' => 'pdf2', $persona->idPersona]) ?> </li>
         
     </ul>
 </nav>

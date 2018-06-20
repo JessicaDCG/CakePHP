@@ -49,12 +49,12 @@ Router::defaultRouteClass(DashedRoute::class);
 /*
     Configurcion PDF's
 */
-
 Router::scope('/users', function ($routes) {
     $routes->extensions('pdf');
-    $routes->connect('/view/*', ['controller' => 'Persona', 'action' => 'pdf']);
+    $routes->connect('/view/*', ['controller' => 'Persona', 'action' => 'pdf2']);
     $routes->fallbacks('InflectedRoute');
 });
+
 
 
 //////////

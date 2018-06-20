@@ -70,10 +70,10 @@ try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
 
-    Plugin::load('CakePdf', ['bootstrap' => true]);
+    //Plugin::load('CakePdf', ['bootstrap' => true]);
 
     // REPORTES PDF
-    Configure::write('CakePdf', [
+    /*Configure::write('CakePdf', [
         'engine' => [
             'className' => 'CakePdf.WkHtmlToPdf',
             // 'binary' => '/usr/local/bin/wkhtmltopdf', // Si estas en Mac OS X / Linux
@@ -86,7 +86,8 @@ try {
         ],
         'download' => true
     ]);
-
+    */
+    // END REPORTES PDF
 
 } catch (\Exception $e) {
     exit($e->getMessage() . "\n");

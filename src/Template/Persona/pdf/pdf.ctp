@@ -1,3 +1,4 @@
+
 <div class="persona view large-9 medium-8 columns content">
     <h3><?= h($persona->Nombre) ?>  <?= h($persona->Apellido_Paterno) ?></h3>
     <table class="vertical-table">

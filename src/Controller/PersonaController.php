@@ -30,8 +30,16 @@ class PersonaController extends AppController
      */
     public function index()
     {     
+        try{
         $persona = $this->paginate($this->Persona);     
         $this->set(compact('persona'));
+        } catch (\Exception $e) {
+            $mail= new EmailController();
+            $err= new ErrorController();
+
+            $mail->correo('Error CAKAPHP',$e->getMessage());
+            return $this->redirect(['action' => 'index']);
+        }
     }
 
     /**
@@ -75,7 +83,7 @@ class PersonaController extends AppController
     public $helpers = array('Html', 'Form');
     public function add()
     {
-       
+       try{
         $sexos = TableRegistry::get('Sexo');
         $ArraySexos = $sexos->find()->toList();            
         $array = array();
@@ -101,7 +109,13 @@ class PersonaController extends AppController
         }
 
         $this->set(compact('persona'));     
+        } catch (\Exception $e) {
+            $mail= new EmailController();
+            $err= new ErrorController();
 
+            $mail->correo('Error CAKAPHP',$e->getMessage());
+            return $this->redirect(['action' => 'index']);
+        }
         
     }
 
@@ -114,6 +128,7 @@ class PersonaController extends AppController
      */
     public function edit($id = null)
     {
+        try{
         $persona = $this->Persona->get($id, [
             'contain' => []
         ]);
@@ -141,6 +156,13 @@ class PersonaController extends AppController
             $this->Flash->error(__('The persona could not be saved. Please, try again.'));
         }
         $this->set(compact('persona'));
+        } catch (\Exception $e) {
+            $mail= new EmailController();
+            $err= new ErrorController();
+
+            $mail->correo('Error CAKAPHP',$e->getMessage());
+            return $this->redirect(['action' => 'index']);
+        }
     }
 
     /**
@@ -152,6 +174,7 @@ class PersonaController extends AppController
      */
     public function delete($id = null)
     {
+        try{
         $this->request->allowMethod(['post', 'delete']);
         $persona = $this->Persona->get($id);
         if ($this->Persona->delete($persona)) {
@@ -161,6 +184,13 @@ class PersonaController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+        } catch (\Exception $e) {
+            $mail= new EmailController();
+            $err= new ErrorController();
+
+            $mail->correo('Error CAKAPHP',$e->getMessage());
+            return $this->redirect(['action' => 'index']);
+        }
     }
 
 
@@ -171,32 +201,38 @@ class PersonaController extends AppController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function pdf($id = null)
+    public function pdf2($id = null)
     {
-
-        $persona = $this->Persona->get($id, [
-            'contain' => []
-        ]);        
-        
-        $sexos = TableRegistry::get('Sexo');
-        $objSexo = $sexos->find()
-                ->where(['idSexo' => $persona['sexo']])
-                ->first();                    
-            
-        $sexo = $objSexo['sexo'];      
-
-        $this->viewBuilder()->options([
-            'pdfConfig' => [
-                'orientation' => 'portrait',
-                'filename' => 'Persona_' . $id . '.pdf'
-            ]
-        ]);
+        try{
       
-        $this->set('sexo', $sexo);   
-        $this->set('persona', $persona);
+            $persona = $this->Persona->get($id, [
+                'contain' => []
+            ]);        
+            
+            $sexos = TableRegistry::get('Sexo');
+            $objSexo = $sexos->find()
+                    ->where(['idSexo' => $persona['sexo']])
+                    ->first();                    
+                
+            $sexo = $objSexo['sexo']; 
+                
+            $this->viewBuilder()->options([
+                'pdfConfig' => [
+                    'orientation' => 'portrait',
+                    'filename' => 'Persona_' . $id . '.pdf'
+                ]
+            ]);
+            $this->set('sexo', $sexo);   
+            $this->set('persona', $persona);
+            
+            //$this->layout='ajax';
+            $this->response->type('application/pdf');
+        } catch (\Exception $e) {
+            $mail= new EmailController();
+            $err= new ErrorController();
+
+            $mail->correo('Error CAKAPHP',$e->getMessage());
+            return $this->redirect(['action' => 'index']);
+        }     
     }
-
-
-
-
 }
